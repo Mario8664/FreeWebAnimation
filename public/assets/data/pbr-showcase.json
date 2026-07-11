@@ -1,0 +1,17 @@
+{
+  "motion": {
+    "spinSpeed": 0.32,
+    "bobAmount": 0.12,
+    "bobSpeed": 1.5
+  },
+  "layout": {
+    "spread": 1.05,
+    "scale": 1
+  },
+  "materials": {
+    "primaryColor": "#d97706",
+    "secondaryColor": "#0f766e",
+    "accentColor": "#334155",
+    "roughness": 0.46
+  }
+}

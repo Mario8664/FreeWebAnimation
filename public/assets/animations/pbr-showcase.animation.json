@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "sceneId": "pbr-showcase",
+  "clips": [
+    {
+      "id": "showcase-loop",
+      "name": "Showcase Loop",
+      "duration": 8,
+      "defaultEase": "auto",
+      "tracks": {
+        "motion.spinSpeed": [
+          { "id": "spin-0", "t": 0, "v": 0.18, "ease": "auto" },
+          { "id": "spin-4", "t": 4, "v": 0.78, "ease": "auto" },
+          { "id": "spin-8", "t": 8, "v": 0.32, "ease": "auto" }
+        ],
+        "motion.bobAmount": [
+          { "id": "bob-0", "t": 0, "v": 0.05, "ease": "auto" },
+          { "id": "bob-4", "t": 4, "v": 0.34, "ease": "auto" },
+          { "id": "bob-8", "t": 8, "v": 0.12, "ease": "auto" }
+        ],
+        "layout.spread": [
+          { "id": "spread-0", "t": 0, "v": 0.82, "ease": "auto" },
+          { "id": "spread-4", "t": 4, "v": 1.55, "ease": "auto" },
+          { "id": "spread-8", "t": 8, "v": 1.05, "ease": "auto" }
+        ],
+        "layout.scale": [
+          { "id": "scale-0", "t": 0, "v": 0.88, "ease": "auto" },
+          { "id": "scale-4", "t": 4, "v": 1.16, "ease": "auto" },
+          { "id": "scale-8", "t": 8, "v": 1, "ease": "auto" }
+        ],
+        "materials.primaryColor": [
+          { "id": "primary-0", "t": 0, "v": "#d97706", "ease": "auto" },
+          { "id": "primary-4", "t": 4, "v": "#dc2626", "ease": "auto" },
+          { "id": "primary-8", "t": 8, "v": "#d97706", "ease": "auto" }
+        ],
+        "materials.secondaryColor": [
+          { "id": "secondary-0", "t": 0, "v": "#0f766e", "ease": "auto" },
+          { "id": "secondary-4", "t": 4, "v": "#2563eb", "ease": "auto" },
+          { "id": "secondary-8", "t": 8, "v": "#0f766e", "ease": "auto" }
+        ],
+        "materials.roughness": [
+          { "id": "roughness-0", "t": 0, "v": 0.36, "ease": "auto" },
+          { "id": "roughness-4", "t": 4, "v": 0.78, "ease": "auto" },
+          { "id": "roughness-8", "t": 8, "v": 0.46, "ease": "auto" }
+        ]
+      }
+    }
+  ]
+}

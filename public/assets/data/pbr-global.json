@@ -1,0 +1,36 @@
+{
+  "lighting": {
+    "main": {
+      "color": "#fff3df",
+      "intensity": 3.2
+    },
+    "ambient": {
+      "color": "#ffffff",
+      "intensity": 0.22
+    },
+    "environment": {
+      "brightness": 0.45,
+      "skyColor": "#d9e7eb",
+      "groundColor": "#b9cf93",
+      "sunSize": 8
+    },
+    "shadow": {
+      "bias": 0.0001,
+      "normalBias": 0.02,
+      "radius": 1,
+      "mapSize": 2048,
+      "cameraSize": 8,
+      "near": 0.5,
+      "far": 28
+    }
+  },
+  "ao": {
+    "enabled": true,
+    "preset": "Subtle",
+    "view": "Final",
+    "quality": "Medium",
+    "strength": 0.55,
+    "range": 0.18,
+    "softness": 0.55
+  }
+}

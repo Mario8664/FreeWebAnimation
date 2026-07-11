@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "sceneId": "pbr-showcase",
+  "tags": [
+    {
+      "id": "tag-start",
+      "time": 0,
+      "color": "#0f766e"
+    },
+    {
+      "id": "tag-peak",
+      "time": 4,
+      "color": "#f97316"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "track-1",
+      "name": "Main",
+      "items": [
+        {
+          "id": "showcase-loop-instance",
+          "clipId": "showcase-loop",
+          "trackId": "track-1",
+          "start": 0,
+          "duration": 8,
+          "speed": 1,
+          "loop": false,
+          "reverse": false,
+          "postMode": "hold"
+        }
+      ]
+    },
+    {
+      "id": "track-2",
+      "name": "Overlay",
+      "items": []
+    },
+    {
+      "id": "track-3",
+      "name": "Notes",
+      "items": []
+    }
+  ]
+}
