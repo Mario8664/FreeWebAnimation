@@ -16,6 +16,10 @@ FreeWebAnimation 是一个可复用的 Web 动画项目框架，基于 Vite + Ty
 - 可复用的自由摄像机组件，适用于 PerspectiveCamera 的 Three.js 页面。
 - 基于浏览器的逐帧导出脚本，用于后续合成视频。
 
+## 用户操作指南
+
+编辑器界面、参数面板、动画系统和视频导出的完整操作说明见 [用户操作指南.html](./用户操作指南.html)。
+
 ## Page Components
 
 页面可以通过覆写 `createComponents()` 来接入可复用组件。组件生命周期在不同页面类型中保持一致：
