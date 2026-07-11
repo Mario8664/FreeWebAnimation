@@ -134,3 +134,7 @@ src/pages/index.ts
 ```text
 src/pages/_template/TemplatePage.ts
 ```
+
+## 许可证
+
+本项目使用 MIT License。你可以自由使用、修改、复制、分发和商用；软件按原样提供，不附带担保。
