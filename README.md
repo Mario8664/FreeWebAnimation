@@ -1,5 +1,7 @@
 # FreeWebAnimation
 
+> 透明说明：本项目由用户提出需求、设计方向和验收反馈，主要代码与文档由 OpenAI Codex 根据对话辅助生成和整理。使用前请自行审查代码、依赖和许可证。
+
 FreeWebAnimation 是一个可复用的 Web 动画项目框架，基于 Vite + TypeScript + Three.js。它适合制作浏览器里的动画演示、参数化场景、PBR/后处理展示，以及可以按时间轴导出视频的页面。
 
 ## 包含内容
