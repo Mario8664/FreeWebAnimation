@@ -32,6 +32,11 @@ function Set-Utf8NoBomContent([string]$PathValue, [string]$Content) {
   [System.IO.File]::WriteAllText($PathValue, $Content, $encoding)
 }
 
+function Get-Utf8Content([string]$PathValue) {
+  $encoding = New-Object System.Text.UTF8Encoding($false)
+  return [System.IO.File]::ReadAllText($PathValue, $encoding)
+}
+
 function Test-InvalidFileName([string]$Value) {
   if ([string]::IsNullOrWhiteSpace($Value)) {
     return $true
@@ -110,10 +115,10 @@ function Remove-GeneratedProjectScaffoldDocs([string]$ProjectRoot) {
     return
   }
 
-  $readme = Get-Content -Raw -LiteralPath $readmePath
+  $readme = Get-Utf8Content $readmePath
   $readme = [regex]::Replace(
     $readme,
-    '(?ms)^## Create A New Project\r?\n.*?(?=^## Start\r?\n)',
+    '(?ms)^## (?:Create A New Project|\u521b\u5efa\u65b0\u9879\u76ee)\r?\n.*?(?=^## (?:Start|\u542f\u52a8)\r?\n)',
     ''
   )
 
