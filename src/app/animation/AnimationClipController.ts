@@ -630,6 +630,7 @@ export class AnimationClipController {
       this.clearKeyframeFitSession();
     }
     this.library.clips.splice(index, 1);
+    const removedTimelineInstances = this.removeTimelineInstancesForClip(clipId);
     if (this.activeClipId === clipId) {
       this.activeClipId = this.library.clips[Math.max(0, index - 1)]?.id ?? null;
       this.currentTime = 0;
@@ -641,9 +642,14 @@ export class AnimationClipController {
       }
     }
 
-    this.statusText = 'Deleted clip';
+    this.statusText = removedTimelineInstances > 0
+      ? `Deleted clip and ${removedTimelineInstances} timeline instance${removedTimelineInstances === 1 ? '' : 's'}`
+      : 'Deleted clip';
     this.notifyChanged();
     this.saveClipLibrary();
+    if (removedTimelineInstances > 0) {
+      this.saveTimeline();
+    }
   }
 
   private renameClip(clipId: string, name: string): void {
@@ -1440,6 +1446,24 @@ export class AnimationClipController {
 
   private sortTimelineTags(): void {
     this.timeline.tags.sort((left, right) => left.time - right.time);
+  }
+
+  private removeTimelineInstancesForClip(clipId: string): number {
+    let removed = 0;
+
+    for (const track of this.timeline.tracks) {
+      track.items = track.items.filter((item) => {
+        if (item.clipId !== clipId) return true;
+
+        removed += 1;
+        if (this.selectedTimelineInstanceId === item.id) {
+          this.selectedTimelineInstanceId = null;
+        }
+        return false;
+      });
+    }
+
+    return removed;
   }
 }
 
