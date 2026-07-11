@@ -150,7 +150,7 @@
       <div class="grid">
         <div class="card">
           <h3>左侧参数区</h3>
-          <p>显示全局参数和当前页面参数。PBR 页面会出现 <code>PBR Global Parameters</code>，普通页面会出现自己的场景参数面板。</p>
+          <p>显示全局参数和当前页面参数。接入 PBR 全局设置的页面会出现 <code>PBR Global Parameters</code>；接入场景参数运行时的页面会出现自己的参数面板。</p>
         </div>
         <div class="card">
           <h3>中间预览区</h3>
@@ -188,7 +188,7 @@
         <li>场景参数分组标题旁的复制按钮会把该组参数写入剪贴板。</li>
         <li>粘贴按钮会从剪贴板读取同结构参数。</li>
         <li>参数名、数量或类型不匹配时，粘贴会被拒绝。</li>
-        <li>全局 PBR 参数面板不提供分组复制/粘贴。</li>
+        <li>全局 PBR 参数面板会显示分组复制/粘贴按钮，但这些按钮是禁用状态。</li>
       </ul>
 
       <p class="note">参数 JSON 是手动保存；动画 Clip 和 Timeline 的改动会在操作后自动保存到 <code>public/assets/animations/</code>。</p>
@@ -213,7 +213,9 @@
         <li>鼠标滚轮缩放 <code>Record Timeline</code> 视图，<code>&lt;</code> / <code>&gt;</code> 平移视图，<code>+</code> / <code>-</code> 缩放视图。</li>
         <li>拖播放头或拖关键帧时，靠近已有关键帧会吸附；按住 <kbd>Ctrl</kbd> 会放大吸附范围。</li>
         <li>播放按钮会播放或暂停当前 Clip。播放结束后再次播放会从头开始。</li>
-        <li>勾选 <code>Preview</code> 后，当前 Clip 采样结果会应用到画面；关闭后恢复到已保存的基础参数。</li>
+        <li>勾选 <code>Preview</code> 后，当前 Clip 采样结果会应用到画面。</li>
+        <li>选择 Clip、移动 <code>Time</code>、播放 Clip、切到 <code>Timeline</code>、移动场景时间、编辑实例或执行 <code>Fit</code> 时，系统也会自动进入 <code>Preview</code>。</li>
+        <li>关闭 <code>Preview</code> 后，画面会恢复到已保存的基础参数；如果进入 Preview 前已经有未保存草稿，<code>保存*</code> 状态仍会保留。</li>
       </ul>
 
       <h3>添加与删除关键帧</h3>
@@ -267,7 +269,7 @@
         <li>同一个参数路径只能占用一个轴。重新选择时，其它轴上相同路径会被清掉。</li>
         <li>调整 <code>Simplify</code>。数值越高，保留的关键帧越少。</li>
         <li>勾选 <code>Uniform speed</code> 会按路径长度重新分布保留关键帧。</li>
-        <li>点击 <code>Fit</code> 应用清理；点击 <code>Restore</code> 恢复本次 Fit 前的关键帧。</li>
+        <li>点击 <code>Fit</code> 应用清理；点击 <code>Restore</code> 恢复当前 Fit 面板会话中第一次应用 Fit 前的关键帧。</li>
       </ol>
       <p><code>Fit</code> 按钮需要“至少两个关键帧”和“至少一个有效轴参数”才可用。浮层顶部可以拖动，用来避开画面。</p>
     </section>
@@ -295,7 +297,8 @@
         <li>点击实例块可以选中它。</li>
         <li>拖动实例块可以改变开始时间和所在轨道。</li>
         <li>拖动实例块左右边缘可以改变长度。</li>
-        <li>移动、缩放实例时按住 <kbd>Ctrl</kbd>，会吸附到其它实例边缘或源 Clip 的播放长度。</li>
+        <li>移动实例时按住 <kbd>Ctrl</kbd>，会吸附到其它实例边缘。</li>
+        <li>缩放实例左右边缘时按住 <kbd>Ctrl</kbd>，会吸附到源 Clip 播放长度；开启 <code>Loop</code> 时也会吸附到循环段长度。</li>
       </ul>
 
       <h3>Instance 面板</h3>
@@ -363,7 +366,7 @@
 
     <section>
       <h2>9. 视频导出</h2>
-      <p>导出依赖保存后的 Timeline 文件。只有 <code>public/assets/animations/&lt;sceneId&gt;.timeline.json</code> 里存在正时长实例的页面，才会被列为可导出场景。</p>
+      <p>导出依赖页面注册和保存后的 Timeline 文件。页面需要在注册表中标记为可导出，并且 <code>public/assets/animations/&lt;sceneId&gt;.timeline.json</code> 里存在正时长实例，才会被列为可导出场景。</p>
       <ul>
         <li>交互式导出：<code>导出视频.bat</code></li>
         <li>查看可导出场景：<code>导出视频.bat --list</code></li>
@@ -421,16 +424,16 @@
     <section>
       <h2>11. 常见问题</h2>
       <h3>为什么保存按钮不能点？</h3>
-      <p>当前处于动画 <code>Preview</code> 状态。先取消 <code>Preview</code>，再保存场景参数。</p>
+      <p>当前处于动画 <code>Preview</code> 状态。这个状态可能是你手动勾选的，也可能是选择 Clip、移动时间、播放、编辑 Timeline 或执行 Fit 时自动开启的。先取消 <code>Preview</code>，再保存场景参数。</p>
 
       <h3>为什么导出列表里没有我的页面？</h3>
-      <p>页面需要有保存后的 timeline 文件，并且时间轴里至少有一个正时长 Clip 实例。</p>
+      <p>页面需要在页面注册表中标记为可导出，还需要有保存后的 timeline 文件，并且时间轴里至少有一个正时长 Clip 实例。</p>
 
       <h3>为什么多选关键帧没反应？</h3>
       <p>需要按住 <kbd>Shift</kbd> 后再在 <code>Record Timeline</code> 上拖框。普通拖动播放头只会移动时间。</p>
 
       <h3>为什么修改参数后关闭 Preview 又变回去了？</h3>
-      <p><code>Preview</code> 是临时动画采样状态。要修改基础场景参数，请关闭 <code>Preview</code> 后再调整并保存。</p>
+      <p><code>Preview</code> 是临时动画采样状态。关闭它会把画面恢复到已保存的基础参数；如果进入 Preview 前已经有未保存草稿，<code>保存*</code> 仍然可能存在。要修改基础场景参数，请关闭 <code>Preview</code> 后再调整并保存。</p>
     </section>
   </main>
 </body>
