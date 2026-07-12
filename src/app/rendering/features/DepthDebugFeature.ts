@@ -1,7 +1,6 @@
 import {
   Mesh,
   OrthographicCamera,
-  PlaneGeometry,
   Scene,
   ShaderMaterial,
   Uniform,
@@ -9,7 +8,7 @@ import {
 } from 'three';
 import type { MaterialRegistry } from '../MaterialRegistry';
 import type { RenderFeature, RenderPipelineContext } from '../RenderFeature';
-import { FULLSCREEN_VERTEX_SHADER } from '../FullscreenShaders';
+import { FULLSCREEN_VERTEX_SHADER, createFullscreenTriangleGeometry } from '../FullscreenShaders';
 import type { DepthPrepassFeature } from './DepthPrepassFeature';
 
 export type DepthDebugSettings = {
@@ -56,7 +55,7 @@ export class DepthDebugFeature implements RenderFeature {
 
     this.scene = new Scene();
     this.camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    this.quad = new Mesh(new PlaneGeometry(2, 2), this.material);
+    this.quad = new Mesh(createFullscreenTriangleGeometry(), this.material);
     this.quad.frustumCulled = false;
     this.scene.add(this.quad);
   }

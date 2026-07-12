@@ -124,6 +124,10 @@ button {
   background: var(--slide);
 }
 
+.render-frame.export-render-frame {
+  border: 0;
+}
+
 .page-host {
   position: relative;
   width: 100%;
